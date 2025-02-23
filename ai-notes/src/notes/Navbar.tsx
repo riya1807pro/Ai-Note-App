@@ -1,12 +1,18 @@
+import AddNotesDailog from "@/components/AddNotesDailog"
 import { Button } from "@/components/ui/button"
 import { UserButton } from "@clerk/nextjs"
 import { Plus } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
+import {useState} from "react"
 
 
 export default function Navbar() {
-        return <div>
+
+        const[showAddNoteDialog,setShowAddNoteDialog] = useState(false)
+
+        return <>
+                        <div>
                 <div className="flex gap=3 justify-center items-center  flex-wrap shadow max-w-7 m-auto">
                         <Link className="flex gap-1 items-center"
                         href={'/notes'}
@@ -22,11 +28,13 @@ export default function Navbar() {
                         } }
                 }}
                 />
-        <Button>
+        <Button onClick={()=>setShowAddNoteDialog(true)}>
                 <Plus className="mr-2" size={20}/>
                 Add Note
         </Button>
               </div>
                 </div>
         </div>
+        <AddNotesDailog open={showAddNoteDialog} setOpen={setShowAddNoteDialog} />
+                </>
 }
