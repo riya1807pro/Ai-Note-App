@@ -1,4 +1,4 @@
-import AddNotesDailog from "@/components/AddNotesDailog"
+import AddEditNotesDailog from "@/components/AddEditNotesDailog"
 import { Button } from "@/components/ui/button"
 import { UserButton } from "@clerk/nextjs"
 import { Plus } from "lucide-react"
@@ -9,7 +9,7 @@ import {useState} from "react"
 
 export default function Navbar() {
 
-        const[showAddNoteDialog,setShowAddNoteDialog] = useState(false)
+        const[showAddEditNoteDialog,setShowAddEditNoteDialog] = useState(false)
 
         return <>
                         <div>
@@ -28,13 +28,13 @@ export default function Navbar() {
                         } }
                 }}
                 />
-        <Button onClick={()=>setShowAddNoteDialog(true)}>
+        <Button onClick={()=>setShowAddEditNoteDialog(true)}>
                 <Plus className="mr-2" size={20}/>
                 Add Note
         </Button>
               </div>
                 </div>
         </div>
-        <AddNotesDailog open={showAddNoteDialog} setOpen={setShowAddNoteDialog} />
+        <AddEditNotesDailog open={showAddEditNoteDialog} setOpen={setShowAddEditNoteDialog} />
                 </>
 }
