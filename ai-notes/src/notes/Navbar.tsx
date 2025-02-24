@@ -1,14 +1,17 @@
 import AddEditNotesDailog from "@/components/AddEditNotesDailog"
 import { Button } from "@/components/ui/button"
+import ThemeToggleButton from "@/components/ui/ThemeToggle"
 import { UserButton } from "@clerk/nextjs"
 import { Plus } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
+import {dark} from "@clerk/nextjs"
 import {useState} from "react"
+import { useTheme } from "next-themes"
 
 
 export default function Navbar() {
-
+        const {theme} = useTheme();
         const[showAddEditNoteDialog,setShowAddEditNoteDialog] = useState(false)
 
         return <>
@@ -23,11 +26,13 @@ export default function Navbar() {
                 <UserButton
                 afterSignOutUrl="/"
                 appearance={{
+                        baseTheme:(theme === "dark" ? dark : undefined),
                         elements : { avatarBox :{
                                 width: "2.5rem" , height: "2.5rem"
                         } }
                 }}
                 />
+                <ThemeToggleButton/>
         <Button onClick={()=>setShowAddEditNoteDialog(true)}>
                 <Plus className="mr-2" size={20}/>
                 Add Note
