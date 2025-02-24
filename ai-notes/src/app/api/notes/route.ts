@@ -1,3 +1,6 @@
+
+import Note from "@/components/note";
+import { getEmbedding } from "@/lib/db/pinecone";
 import prisma from "@/lib/db/prisma";
 import { createNoteSchema, deleteSchema,updatesSchema } from "@/lib/validation/note";
 import { auth } from "@clerk/nextjs/server";
@@ -22,14 +25,27 @@ export async function POST(req:Request) {
             return Response.json({error:"unauthoriszed"},{status:401});
         }
 
+        const embedding = await getEmbeddingForNotes(title,content)
 
-        const note = await prisma.note.create({
-          data:{
-            title,
-            content,
-            userId
-          }
+        const note  = await prisma.$transaction(async (tx)=>{
+          const note = await tx.note.create({
+            data:{
+              title,
+              content,
+              userId
+            }
+          })
+
+          await notesIndex.upsert([
+            {
+              id:  note.id,
+              values: embedding,
+              metadata : {userId}
+            }
+          ])
+return Note;
         })
+
 
 
         return Response.json({note},{status:201}); //status: success
@@ -113,4 +129,8 @@ export async function DELETE(req:Request) {
     console.error(error)
     return Response.json({ error: "internal server error"},{status: 500})
   }
+}
+
+async function getEmbeddingForNotes(title:string, content: string | undefined) {
+  return getEmbedding( title + "\n\n" + content ?? "" )
 }

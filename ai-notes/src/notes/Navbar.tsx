@@ -5,7 +5,7 @@ import { UserButton } from "@clerk/nextjs"
 import { Plus } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
-import {dark} from "@clerk/nextjs"
+import {dark } from "@clerk/themes"
 import {useState} from "react"
 import { useTheme } from "next-themes"
 
