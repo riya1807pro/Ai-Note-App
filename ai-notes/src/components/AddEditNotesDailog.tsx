@@ -1,3 +1,5 @@
+'use client'
+
 import {useForm} from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CreateNoteSchema , createNoteSchema  } from "@/lib/validation/note";
@@ -7,7 +9,7 @@ import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 import Loadingbutton from "./ui/koading-button";
 import { useRouter } from "next/navigation";
-import { Note } from "@prisma/client";
+import { Note } from '@prisma/client';
 import { useState } from "react";
 
 

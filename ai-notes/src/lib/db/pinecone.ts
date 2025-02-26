@@ -8,11 +8,11 @@ if(!apiKey ) {
 }
  
 const pinecone = new Pinecone({
-    environment: "gcp-starter",
+    environment: "us-west1-gcp",
     apiKey
 });
 
-export const notedIndex = pinecone.Index("nextjs-ai-note-app")
+export const notesIndex = pinecone.Index("nextjs-ai-note-app")
 
 export async function getEmbedding(text:string) {
     const response = await openai.embeddings.create({

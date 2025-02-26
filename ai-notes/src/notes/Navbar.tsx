@@ -1,3 +1,5 @@
+'use client'
+
 import AddEditNotesDailog from "@/components/AddEditNotesDailog"
 import { Button } from "@/components/ui/button"
 import ThemeToggleButton from "@/components/ui/ThemeToggle"

@@ -14,13 +14,13 @@ datasource db {
 }
 
 model Note {
-id   String  @id @default(auto())  @map("_id") @db.ObjectId
-title String 
-content String? 
-userId String
-createdAt DateTime @default(now())
-updatedAt DateTime@updatedAt
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  title     String
+  content   String?  // Optional field
+  userId    String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-@@map("notes")
-
+  @@map("notes")  // Map the model to the "notes" collection
 }
+
