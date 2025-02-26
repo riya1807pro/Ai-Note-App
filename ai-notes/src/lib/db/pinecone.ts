@@ -8,7 +8,7 @@ if(!apiKey ) {
 }
  
 const pinecone = new Pinecone({
-    environment: "us-west1-gcp",
+    region: 'us-east1',
     apiKey
 });
 

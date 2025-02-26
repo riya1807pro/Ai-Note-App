@@ -10,6 +10,8 @@ import Link from "next/link"
 import {dark } from "@clerk/themes"
 import {useState} from "react"
 import { useTheme } from "next-themes"
+import AiChatbox from "@/components/AiChatbox"
+import AiChatboxButton from "@/components/AIChatboxButton"
 
 
 export default function Navbar() {
@@ -39,6 +41,7 @@ export default function Navbar() {
                 <Plus className="mr-2" size={20}/>
                 Add Note
         </Button>
+        <AiChatboxButton/>
               </div>
                 </div>
         </div>
